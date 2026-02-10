@@ -35,5 +35,25 @@ pub fn scan(path: &Path) -> Node {
     }
     //Handling folders
 
-    todo!("Handle directories and recursion")
+    let mut children = Vec::new();
+    let mut total_size = 0;
+    if let Ok(entries) = fs::read_dir(path) {
+        for entry in entries.filter_map(|e| e.ok()) {
+            //calling scan on the child path
+            let child_node = scan(&entry.path());
+            //adding to size of the parent Node
+            total_size += child_node.metadata.size;
+            //pushin the child to p (Parent) [Pushin P lmaooo]
+            children.push(Box::new(child_node));
+        }
+    }
+
+    Node {
+        metadata: Metadata {
+            name,
+            path: path.to_path_buf(),
+            size: total_size,
+        },
+        kind: NodeKind::Directory(children),
+    }
 }

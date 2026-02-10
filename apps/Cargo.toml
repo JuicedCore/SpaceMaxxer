@@ -1,6 +1,10 @@
-[workspace]
+while
 members = [
     "libs/crawler",
     "apps/visualizer",
 ]
 resolver = "2"
+
+[dependencies]
+crawler = {path = "../../libs/crawler"}
+serde_json = "1.0.149"

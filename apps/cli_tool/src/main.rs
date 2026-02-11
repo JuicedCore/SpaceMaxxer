@@ -27,9 +27,13 @@ fn main() {
         }
     };
 
-    println!("SpaceMaxxer is analyzing you frame mogging potential...");
+    println!(
+        "SpaceMaxxer is analyzing you frame mogging potential at {:?} ",
+        target
+    );
 
     let root_node = scan(&target);
+
     let save_path = match args.output {
         Some(p) => p,
         None => {
@@ -41,7 +45,6 @@ fn main() {
                 .expect("Stop cancelling it CHUD")
         }
     };
-
     //
     //
     //

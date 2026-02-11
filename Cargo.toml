@@ -1,6 +1,6 @@
 [workspace]
 members = [
     "libs/crawler",
-    "apps/visualizer",
+    "apps/cli_tool",
 ]
 resolver = "2"

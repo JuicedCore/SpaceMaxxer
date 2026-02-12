@@ -18,11 +18,14 @@ pub fn scan(path: &Path) -> Node {
                     name,
                     path: path.to_path_buf(),
                     size: 0,
+                    modified: None,
                 },
                 kind: NodeKind::File,
             };
         }
     };
+
+    let modified = os_metadata.modified().ok();
     //Handling files
     if os_metadata.is_file() || os_metadata.file_type().is_symlink() {
         return Node {
@@ -30,6 +33,7 @@ pub fn scan(path: &Path) -> Node {
                 name,
                 path: path.to_path_buf(),
                 size: os_metadata.len(),
+                modified,
             },
             kind: NodeKind::File,
         };
@@ -56,6 +60,7 @@ pub fn scan(path: &Path) -> Node {
             name,
             path: path.to_path_buf(),
             size: total_size,
+            modified,
         },
         kind: NodeKind::Directory(children),
     }

@@ -1,4 +1,5 @@
 use crate::types::{Metadata, Node, NodeKind};
+use rayon::prelude::*;
 use std::fs;
 use std::path::Path;
 
@@ -33,20 +34,22 @@ pub fn scan(path: &Path) -> Node {
             kind: NodeKind::File,
         };
     }
-    //Handling folders
 
-    let mut children = Vec::new();
-    let mut total_size = 0;
+    //Handling folders parallely
+    let mut children: Vec<Box<Node>> = Vec::new();
+
     if let Ok(entries) = fs::read_dir(path) {
-        for entry in entries.filter_map(|e| e.ok()) {
-            //calling scan on the child path
-            let child_node = scan(&entry.path());
-            //adding to size of the parent Node
-            total_size += child_node.metadata.size;
-            //pushin the child to p (Parent) [Pushin P lmaooo]
-            children.push(Box::new(child_node));
-        }
+        let valid_entries: Vec<_> = entries.flatten().collect();
+        children = valid_entries
+            .into_par_iter()
+            .map(|entry| {
+                let path = entry.path();
+                let node = scan(&path);
+                Box::new(node)
+            })
+            .collect();
     }
+    let total_size = children.iter().map(|c| c.metadata.size).sum();
 
     Node {
         metadata: Metadata {

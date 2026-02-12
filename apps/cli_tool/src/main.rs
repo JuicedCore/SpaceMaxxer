@@ -4,6 +4,7 @@ use rfd::FileDialog;
 use std::fs::File;
 use std::io::Write;
 use std::path::PathBuf;
+use std::time::Instant;
 
 #[derive(Parser, Debug)]
 #[command(name = "Spacemaxxer CLI", version, about = "Disk space analysis EZ")]
@@ -31,9 +32,10 @@ fn main() {
         "SpaceMaxxer is analyzing you frame mogging potential at {:?} ",
         target
     );
-
+    let start_time = Instant::now();
     let root_node = scan(&target);
 
+    let duration = start_time.elapsed();
     let save_path = match args.output {
         Some(p) => p,
         None => {
@@ -42,7 +44,7 @@ fn main() {
                 .set_file_name("Disk_map.json")
                 .add_filter("JSON", &["json"])
                 .save_file()
-                .expect("Stop cancelling it CHUD")
+                .expect("Stop cancelling the scan you CHUD")
         }
     };
     //
@@ -68,4 +70,6 @@ fn main() {
         "Total Potential I see: {:?}  bytes!",
         root_node.metadata.size
     );
+
+    println!(" 🕐 The total time taken is: {:?}", duration);
 }

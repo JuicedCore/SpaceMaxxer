@@ -53,6 +53,12 @@ dependencies = [
 ]
 
 [[package]]
+name = "bincode"
+version = "3.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "fd6a120d2e16b3e1b4a24bd70f23b12d3e16b81f113364a26935f8db7245452d"
+
+[[package]]
 name = "bitflags"
 version = "2.10.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -137,6 +143,7 @@ dependencies = [
  "crawler",
  "rfd",
  "serde_json",
+ "storage",
 ]
 
 [[package]]
@@ -571,6 +578,16 @@ name = "smallvec"
 version = "1.15.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "67b1b7a3b5fe4f1376887184045fcf45c69e92af734b7aaddc05fb777b6fbd03"
+
+[[package]]
+name = "storage"
+version = "0.1.0"
+dependencies = [
+ "bincode",
+ "crawler",
+ "serde",
+ "serde_json",
+]
 
 [[package]]
 name = "strsim"

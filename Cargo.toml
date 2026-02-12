@@ -1,6 +1,7 @@
 [workspace]
 members = [
     "libs/crawler",
-    "apps/cli_tool",
+    "apps/cli_tool", 
+    "libs/storage",
 ]
 resolver = "2"

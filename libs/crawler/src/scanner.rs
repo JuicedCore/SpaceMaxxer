@@ -19,6 +19,7 @@ pub fn scan(path: &Path) -> Node {
                     path: path.to_path_buf(),
                     size: 0,
                     modified: None,
+                    oldest_modified: None,
                 },
                 kind: NodeKind::File,
             };
@@ -34,6 +35,7 @@ pub fn scan(path: &Path) -> Node {
                 path: path.to_path_buf(),
                 size: os_metadata.len(),
                 modified,
+                oldest_modified: modified,
             },
             kind: NodeKind::File,
         };
@@ -55,12 +57,18 @@ pub fn scan(path: &Path) -> Node {
     }
     let total_size = children.iter().map(|c| c.metadata.size).sum();
 
+    let oldest_in_subtree = children
+        .iter()
+        .filter_map(|c| c.metadata.oldest_modified) // Extract children's times (skip Nones)
+        .chain(modified) // Add this folder's own time to the pile
+        .min();
     Node {
         metadata: Metadata {
             name,
             path: path.to_path_buf(),
             size: total_size,
             modified,
+            oldest_modified: oldest_in_subtree,
         },
         kind: NodeKind::Directory(children),
     }

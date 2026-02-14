@@ -7,6 +7,7 @@ pub struct Metadata {
     pub path: PathBuf,
     pub size: u64,
     pub modified: Option<SystemTime>,
+    pub oldest_modified: Option<SystemTime>,
 }
 
 #[derive(Debug, Clone, Serialize)] // Add Serialize here

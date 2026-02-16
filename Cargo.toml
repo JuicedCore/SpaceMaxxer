@@ -2,6 +2,6 @@
 members = [
     "libs/crawler",
     "apps/cli_tool", 
-    "libs/storage", "libs/layout",
+    "libs/storage", "libs/layout", "libs/treemap",
 ]
 resolver = "2"

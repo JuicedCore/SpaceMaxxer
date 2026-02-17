@@ -3,3 +3,4 @@ target/
 .DS_Store
 disk_map.json
 *.json
+map.svg

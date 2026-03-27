@@ -18,8 +18,8 @@ The architecture is split into a 3-step pipeline to keep the Unity main thread f
 
 ## Stuff It Does
 
-* **Async Processing:** The UI and loading screens stay buttery smooth while Rust scans the disk in the background. 
-* **Smart Culling:** Automatically ignores 0-byte files and null values so the engine doesn't waste memory rendering microscopic, invisible cubes.
+* **Async Processing:** The UI and loading screens stay smooth while Rust scans the disk in the background. 
+* **Smart Culling:** Automatically ignores 0-byte files and null values so the engine doesn't waste memory rendering microscopic, cubes.
 * **Hash-Based Colors:** Every file gets a specific color based on its properties, making it easy to visually identify what is eating up your storage.
 
 ---

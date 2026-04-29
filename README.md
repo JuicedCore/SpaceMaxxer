@@ -1,4 +1,4 @@
-<img width="952" height="578" alt="Screenshot 2026-04-29 161059" src="https://github.com/user-attachments/assets/08a3c741-ba52-425f-9d7e-ccb5be303e7d" /># Spacemaxxer
+# Spacemaxxer
 
 A 3D file system visualizer built with **Rust** and **Unity**.
 

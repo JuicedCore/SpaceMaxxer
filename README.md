@@ -1,4 +1,4 @@
-# Spacemaxxer
+<img width="952" height="578" alt="Screenshot 2026-04-29 161059" src="https://github.com/user-attachments/assets/08a3c741-ba52-425f-9d7e-ccb5be303e7d" /># Spacemaxxer
 
 A 3D file system visualizer built with **Rust** and **Unity**.
 
@@ -38,3 +38,8 @@ cargo run -p plotter -- --unity --show-folders
 
 If you are cloning this to build it in Unity yourself, you must drop the compiled Rust binaries (cli_tool.exe and plotter.exe) into the Assets/StreamingAssets/ folder before you hit build.
 The Unity project is seperate.
+
+---
+Preview of a smaple folder being visualzied
+
+<img width="952" height="578" alt="image" src="https://github.com/user-attachments/assets/bce5cf1d-ecfe-4963-a39d-8defdf8b540e" />
